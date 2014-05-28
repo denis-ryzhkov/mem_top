@@ -41,11 +41,14 @@ Result::
 
 Explaining result:
 
-* It is absolutely clear who is leaking here, it is Python client of Gearman.
-* Found its known bug - leaking defaultdict of deques, and a dict of GearmanJobRequest-s: https://github.com/Yelp/python-gearman/issues/10
-* Found this bug is already fixed, but PyPI at https://pypi.python.org/pypi/gearman still has an old broken code.
-* Replaced "pip install gearman" with "pip install git+https://github.com/Yelp/python-gearman.git".
-* Repeated "mem_top" test, and confirmed the leak is completely closed.
+* Noticed a leak of 6GB RAM and counting.
+* Added "mem_top" and let it run for a while.
+* When got the result above it became absolutely clear who is leaking here - the Python client of Gearman.
+* Found its known bug - https://github.com/Yelp/python-gearman/issues/10
+  leaking defaultdict of deques, and a dict of GearmanJobRequest-s,
+  just as the "mem_top" showed.
+* Replaced "python-gearman" - long story: stale 2.0.2 at PyPI, broken 2.0.X at github, etc.
+* "mem_top" confirmed the leak is now completely closed.
 
 Config defaults::
 
