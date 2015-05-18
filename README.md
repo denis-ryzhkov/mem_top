@@ -52,6 +52,6 @@ Config defaults:
 
     mem_top(limit=10, width=100, sep='\n', refs_format='{num}\t{type} {obj}', types_format='{num}\t {obj}')
 
-mem_top version 0.1.0  
-Copyright (C) 2014 by Denis Ryzhkov <denisr@denisr.com>  
+mem_top version 0.1.1  
+Copyright (C) 2014-2015 by Denis Ryzhkov <denisr@denisr.com>  
 MIT License, see http://opensource.org/licenses/MIT
