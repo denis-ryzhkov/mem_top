@@ -42,7 +42,7 @@ def mem_top(limit=10, width=100, sep='\n', refs_format='{num}\t{type} {obj}', ty
         '',
         'types:',
         _top(limit, width, sep, types_format, (
-            (num, type) for type, num in nums_and_types.items()
+            (num, _type) for _type, num in nums_and_types.items()
         )),
         '',
     ))
