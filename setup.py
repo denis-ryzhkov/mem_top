@@ -57,10 +57,9 @@ UPDATE:
 Config defaults::
 
     mem_top(
-        limit=10, width=100, sep='\n', refs_format='{num}\t{type} {obj}', types_format='{num}\t {obj}',
+        limit=10, width=100, sep='\\n', refs_format='{num}\\t{type} {obj}', types_format='{num}\\t {obj}',
         verbose_types=None, verbose_file_name='/tmp/mem_top',
     )
-
 ''',
     url='https://github.com/denis-ryzhkov/mem_top',
     author='Denis Ryzhkov',
