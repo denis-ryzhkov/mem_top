@@ -59,6 +59,6 @@ Config defaults:
         verbose_types=None, verbose_file_name='/tmp/mem_top',
     )
 
-mem_top version 0.1.4  
+mem_top version 0.1.5  
 Copyright (C) 2014-2016 by Denis Ryzhkov <denisr@denisr.com>  
 MIT License, see http://opensource.org/licenses/MIT
