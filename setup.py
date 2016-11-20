@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='mem_top',
-    version='0.1.2',
+    version='0.1.3',
     description='Shows top suspects for memory leaks in your Python program.',
     long_description='''
 Usage::
@@ -50,9 +50,16 @@ Explaining result:
 * Replaced "python-gearman" - long story: stale 2.0.2 at PyPI, broken 2.0.X at github, etc.
 * "mem_top" confirmed the leak is now completely closed.
 
+UPDATE:
+
+* Pass e.g. ``verbose_types=[dict, list]`` to get values sorted by repr length.
+
 Config defaults::
 
-    mem_top(limit=10, width=100, sep='\\n', refs_format='{num}\\t{type} {obj}', types_format='{num}\\t {obj}')
+    mem_top(
+        limit=10, width=100, sep='\n', refs_format='{num}\t{type} {obj}', types_format='{num}\t {obj}',
+        verbose_types=None, verbose_file_name='/tmp/mem_top',
+    )
 
 ''',
     url='https://github.com/denis-ryzhkov/mem_top',

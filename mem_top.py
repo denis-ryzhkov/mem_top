@@ -12,8 +12,8 @@ Usage:
 Please see full description here:
 https://github.com/denis-ryzhkov/mem_top/blob/master/README.md
 
-mem_top version 0.1.2  
-Copyright (C) 2014-2015 by Denis Ryzhkov <denisr@denisr.com>  
+mem_top version 0.1.3  
+Copyright (C) 2014-2016 by Denis Ryzhkov <denisr@denisr.com>  
 MIT License, see http://opensource.org/licenses/MIT
 """
 
@@ -24,14 +24,31 @@ import gc
 
 #### mem_top
 
-def mem_top(limit=10, width=100, sep='\n', refs_format='{num}\t{type} {obj}', types_format='{num}\t {obj}'):
+def mem_top(limit=10, width=100, sep='\n', refs_format='{num}\t{type} {obj}', types_format='{num}\t {obj}', verbose_types=None, verbose_file_name='/tmp/mem_top'):
 
     gc.collect()
     objs = gc.get_objects()
 
-    nums_and_types = defaultdict(int)
+    nums_by_types = defaultdict(int)
+    reprs_by_types = defaultdict(list)
+
     for obj in objs:
-        nums_and_types[type(obj)] += 1
+        _type = type(obj)
+        nums_by_types[_type] += 1
+        if verbose_types and _type in verbose_types:
+            reprs_by_types[_type].append(repr(obj))
+
+    if verbose_types:
+        verbose_result = sep.join(sep.join(
+            types_format.format(num=len(s), obj=s[:width])
+            for s in sorted(reprs_by_types[_type], key=lambda s: -len(s))
+        ) for _type in verbose_types)
+
+        if verbose_file_name:
+            with open(verbose_file_name, 'w') as f:
+                f.write(verbose_result)
+        else:
+            return verbose_result
 
     return sep.join((
         '',
@@ -42,7 +59,7 @@ def mem_top(limit=10, width=100, sep='\n', refs_format='{num}\t{type} {obj}', ty
         '',
         'types:',
         _top(limit, width, sep, types_format, (
-            (num, _type) for _type, num in nums_and_types.items()
+            (num, _type) for _type, num in nums_by_types.items()
         )),
         '',
     ))
