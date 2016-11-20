@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='mem_top',
-    version='0.1.3',
+    version='0.1.4',
     description='Shows top suspects for memory leaks in your Python program.',
     long_description='''
 Usage::
