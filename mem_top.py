@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 Shows top suspects for memory leaks in your Python program.
 
@@ -12,19 +13,19 @@ Usage:
 Please see full description here:
 https://github.com/denis-ryzhkov/mem_top/blob/master/README.md
 
-mem_top version 0.1.5  
-Copyright (C) 2014-2016 by Denis Ryzhkov <denisr@denisr.com>  
+mem_top version 0.1.6  
+Copyright (C) 2014-2017 by Denis Ryzhkov <denisr@denisr.com>  
 MIT License, see http://opensource.org/licenses/MIT
 """
 
 #### import
 
 from collections import defaultdict
-import gc
+import gc, sys
 
 #### mem_top
 
-def mem_top(limit=10, width=100, sep='\n', refs_format='{num}\t{type} {obj}', types_format='{num}\t {obj}', verbose_types=None, verbose_file_name='/tmp/mem_top'):
+def mem_top(limit=10, width=100, sep='\n', refs_format='{num}\t{type} {obj}', bytes_format='{num}\t {obj}', types_format='{num}\t {obj}', verbose_types=None, verbose_file_name='/tmp/mem_top'):
 
     gc.collect()
     objs = gc.get_objects()
@@ -55,6 +56,11 @@ def mem_top(limit=10, width=100, sep='\n', refs_format='{num}\t{type} {obj}', ty
         'refs:',
         _top(limit, width, sep, refs_format, (
             (len(gc.get_referents(obj)), obj) for obj in objs
+        )),
+        '',
+        'bytes:',
+        _top(limit, width, sep, bytes_format, (
+            (sys.getsizeof(obj), obj) for obj in objs
         )),
         '',
         'types:',
