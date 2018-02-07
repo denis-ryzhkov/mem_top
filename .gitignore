@@ -1,3 +1,5 @@
+build
 dist
+mem_top.egg-info
 MANIFEST
 *.pyc

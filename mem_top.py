@@ -10,11 +10,19 @@ Usage:
     # From time to time:
     logging.debug(mem_top()) # Or just print().
 
+    # Notice which counters keep increasing over time - they are the suspects.
+
+Counters:
+
+* refs - number of direct references from this object to other objects, like keys and values of dict
+* bytes - size of this object in bytes
+* types - number of objects of this type still kept in memory after garbage collection
+
 Please see full description here:
 https://github.com/denis-ryzhkov/mem_top/blob/master/README.md
 
-mem_top version 0.1.6  
-Copyright (C) 2014-2017 by Denis Ryzhkov <denisr@denisr.com>  
+mem_top version 0.1.7  
+Copyright (C) 2014-2018 by Denis Ryzhkov <denisr@denisr.com>  
 MIT License, see http://opensource.org/licenses/MIT
 """
 
@@ -25,7 +33,16 @@ import gc, sys
 
 #### mem_top
 
-def mem_top(limit=10, width=100, sep='\n', refs_format='{num}\t{type} {obj}', bytes_format='{num}\t {obj}', types_format='{num}\t {obj}', verbose_types=None, verbose_file_name='/tmp/mem_top'):
+def mem_top(
+    limit=10,                           # limit of top lines per section
+    width=100,                          # width of each line in chars
+    sep='\n',                           # char to separate lines with
+    refs_format='{num}\t{type} {obj}',  # format of line in "references" section
+    bytes_format='{num}\t {obj}',       # format of line in "bytes" section
+    types_format='{num}\t {obj}',       # format of line in "types" section
+    verbose_types=None,                 # list of types to get their values sorted by repr length
+    verbose_file_name='/tmp/mem_top',   # name of file to store "verbose_types" in
+):
 
     gc.collect()
     objs = gc.get_objects()
