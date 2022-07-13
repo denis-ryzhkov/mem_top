@@ -66,11 +66,6 @@ just as the "mem_top" showed.
   in `verbose_file_name` or returned from `mem_top()`.
 * Added "bytes" top.
 
-## See also
-
-* https://docs.python.org/2/library/gc.html#gc.garbage
-* https://pypi.python.org/pypi/objgraph
-
 ## Config defaults
 
 ```
@@ -86,8 +81,13 @@ mem_top(
 )
 ```
 
+## See also
+
+* https://docs.python.org/2/library/gc.html#gc.garbage
+* https://pypi.python.org/pypi/objgraph
+
 ## About
 
-mem_top version 0.2.0  
+mem_top version 0.2.1  
 Copyright (c) 2014-2022 Denis Ryzhkov <denisr@denisr.com>  
 MIT License

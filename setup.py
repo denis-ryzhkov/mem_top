@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='mem_top',
-    version='0.2.0',
+    version='0.2.1',
     description='Shows top suspects for memory leaks in your Python program.',
     long_description=r'''
 Usage::
@@ -18,12 +18,12 @@ Usage::
 
 Counters:
 
-`mem_top` iterates all objects found in memory and calculates:
+"mem_top" iterates all objects found in memory and calculates:
 
 * refs - number of direct references from this object to other objects, like keys and values of dict
 
-    * E.g. a dict `{("some", "complex", "key"): "value"}` will have `refs: 2` - 1 ref for key, 1 ref for value
-    * Its key `("some", "complex", "key")` will have `refs: 3` - 1 ref per item
+    * E.g. a dict {("some", "complex", "key"): "value"} will have "refs: 2" - 1 ref for key, 1 ref for value
+    * Its key ("some", "complex", "key") will have "refs: 3" - 1 ref per item
 
 * bytes - size of this object in bytes
 * types - number of objects of this type still kept in memory after garbage collection
@@ -66,13 +66,8 @@ Real life example::
 
 Updates:
 
-* Pass e.g. `verbose_types=[dict, list]` to store their values, sorted by `repr` length, in `verbose_file_name`.
+* Pass e.g. "verbose_types=[dict, list]" to store their values, sorted by "repr" length, in "verbose_file_name".
 * Added "bytes" top.
-
-See also:
-
-* https://docs.python.org/2/library/gc.html#gc.garbage
-* https://pypi.python.org/pypi/objgraph
 
 Config defaults::
 
@@ -86,6 +81,11 @@ Config defaults::
         verbose_types=None,                 # list of types to sort values by `repr` length
         verbose_file_name='/tmp/mem_top',   # name of file to store verbose values in
     )
+
+See also:
+
+* https://docs.python.org/2/library/gc.html#gc.garbage
+* https://pypi.python.org/pypi/objgraph
 
 ''',
     url='https://github.com/denis-ryzhkov/mem_top',

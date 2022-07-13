@@ -26,7 +26,7 @@ Counters:
 Please see full description here:
 https://github.com/denis-ryzhkov/mem_top/blob/master/README.md
 
-mem_top version 0.2.0
+mem_top version 0.2.1
 Copyright (c) 2014-2022 Denis Ryzhkov <denisr@denisr.com>
 MIT License
 """
